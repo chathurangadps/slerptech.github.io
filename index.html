@@ -2,256 +2,358 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SLERPTECH – Launching Soon</title>
-  <link rel="icon" type="image/png" href="assets/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLERPTECH | ERP, Cloud, Software Development & AI Solutions</title>
+  <meta name="description" content="SLERPTECH provides ADempiere and iDempiere ERP consulting, implementation, support, custom software development, cloud solutions, integrations and AI-powered enterprise solutions." />
+  <meta property="og:title" content="SLERPTECH | ERP, Cloud, Software Development & AI Solutions" />
+  <meta property="og:description" content="Modern ERP solutions, cloud architecture, custom software, and AI automation for enterprises." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #151b3a 0, #050712 55%, #02030a 100%);
       color: #f9fafb;
-      padding: 0;
+      line-height: 1.6;
     }
 
-    .shell {
-      width: 100%;
-      max-width: 1120px;
-      padding: 32px 20px;
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 7, 18, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      transition: background 0.3s ease;
     }
 
-    @media (max-width: 768px) {
-      .shell {
-        padding: 16px 12px;
-      }
+    nav.scrolled {
+      background: rgba(5, 7, 18, 0.95);
+      border-bottom-color: rgba(148, 163, 184, 0.2);
     }
 
-    .card {
-      background: linear-gradient(135deg, rgba(20, 24, 45, 0.98), rgba(5, 7, 20, 0.98));
-      border-radius: 28px;
-      padding: 32px;
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.75),
-        0 0 0 1px rgba(15, 23, 42, 0.8);
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 32px;
-    }
-
-    @media (max-width: 900px) {
-      .card {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .card {
-        padding: 24px 20px;
-        border-radius: 20px;
-        gap: 32px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .card {
-        padding: 20px 16px;
-        border-radius: 16px;
-        gap: 28px;
-      }
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 14px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(94, 234, 212, 0.3);
-      font-size: 12px;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: #a5f3fc;
-      margin-bottom: 18px;
-    }
-
-    @media (max-width: 480px) {
-      .badge {
-        font-size: 11px;
-        padding: 4px 12px;
-        margin-bottom: 14px;
-      }
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.5;
-      }
-    }
-
-    /* LEFT SIDE */
-
-    .left {
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      gap: 24px;
-    }
-
-    .logo-row {
-      display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 8px;
+      height: 70px;
     }
 
-    .logo-image {
-      height: 200px;        /* adjust if needed */
-      width: auto;
-      display: block;
-      max-width: 100%;
-      transition: transform 0.3s ease, filter 0.3s ease;
+    .logo-text {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f97316, #fb7185);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f97316;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
       cursor: pointer;
     }
 
-    .logo-image:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.5));
+    .hamburger span {
+      width: 25px;
+      height: 2px;
+      background: #f9fafb;
+      border-radius: 2px;
+      transition: all 0.3s ease;
     }
 
     @media (max-width: 768px) {
-      .logo-image {
-        height: 150px;
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(5, 7, 18, 0.98);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.05);
       }
     }
 
-    @media (max-width: 480px) {
-      .logo-image {
-        height: 120px;
-      }
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    .logo-text-sub {
-      font-size: 12px;
-      color: #fbbf24;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 600;
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      width: 100%;
     }
 
-    h1 {
-      font-size: clamp(28px, 5vw, 42px);
-      line-height: 1.2;
-      margin-bottom: 12px;
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        line-height: 1.25;
-        margin-bottom: 14px;
-      }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      width: fit-content;
+      color: #38bdf8;
+      font-size: 13px;
+      font-weight: 500;
     }
 
-    h1 span.accent {
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.1;
+      color: #f9fafb;
+    }
+
+    .hero h1 .accent {
       background: linear-gradient(135deg, #f97316, #fb7185);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .lead {
-      font-size: 16px;
-      color: #cbd5f5;
-      max-width: 420px;
+    .hero-description {
+      font-size: 18px;
+      color: #cbd5e1;
+      max-width: 450px;
       line-height: 1.6;
-      margin-bottom: 24px;
     }
 
-    @media (max-width: 768px) {
-      .lead {
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .lead {
-        font-size: 14px;
-        line-height: 1.5;
-        margin-bottom: 20px;
-      }
-    }
-
-    .meta {
+    .hero-cta {
       display: flex;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 10px 18px;
-      font-size: 13px;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f97316, #fb7185);
+      color: white;
+      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(148, 163, 184, 0.1);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(148, 163, 184, 0.15);
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual {
+      width: 100%;
+      max-width: 500px;
+      height: 400px;
+      background: radial-gradient(circle at 30% 20%, rgba(249, 115, 22, 0.15), transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(56, 189, 248, 0.1), transparent 50%);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
       color: #9ca3af;
     }
 
-    .meta span.label {
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    /* FORM */
-
-    .form {
-      margin-top: 6px;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 600px) {
-      .form-row {
-        flex-direction: column;
-        gap: 10px;
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
+
+      .hero {
+        min-height: auto;
+        padding: 60px 20px;
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      margin-bottom: 12px;
+      color: #f9fafb;
+    }
+
+    section > .section-intro {
+      font-size: 18px;
+      color: #cbd5e1;
+      max-width: 600px;
+      margin-bottom: 50px;
+      line-height: 1.6;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .service-card {
+      background: linear-gradient(135deg, rgba(20, 24, 45, 0.6), rgba(5, 7, 20, 0.6));
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      border-color: rgba(249, 115, 22, 0.3);
+      box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #f97316, #fb7185);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #f9fafb;
+    }
+
+    .service-card p {
+      color: #cbd5e1;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Contact Form Section */
+    .contact-section {
+      background: linear-gradient(135deg, rgba(20, 24, 45, 0.3), rgba(5, 7, 20, 0.3));
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      margin-bottom: 16px;
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 40px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .form-input {
-      flex: 1;
-      min-width: 0;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.9);
-      color: #e5e7eb;
-      font-size: 14px;
-      outline: none;
-    }
-
-    @media (max-width: 600px) {
-      .form-input {
-        width: 100%;
-        padding: 12px 16px;
-      }
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.8);
+      color: #f9fafb;
+      font-size: 15px;
+      transition: all 0.2s ease;
     }
 
     .form-input::placeholder {
@@ -259,358 +361,385 @@
     }
 
     .form-input:focus {
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+      outline: none;
+      border-color: #f97316;
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
     }
 
-    .btn {
-      padding: 12px 24px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      background-image: linear-gradient(135deg, #22c55e, #0ea5e9);
-      color: #020617;
-      box-shadow: 0 12px 30px rgba(8, 47, 73, 0.75);
-      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
-    }
-
-    @media (max-width: 600px) {
-      .btn {
-        width: 100%;
-        padding: 12px 20px;
-        white-space: normal;
-      }
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      box-shadow: 0 16px 40px rgba(8, 47, 73, 0.9);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-      box-shadow: 0 5px 15px rgba(8, 47, 73, 0.7);
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      background-image: linear-gradient(135deg, #64748b, #475569);
-    }
-
-    .btn:disabled:hover {
-      transform: none;
-      filter: none;
-      box-shadow: 0 12px 30px rgba(8, 47, 73, 0.75);
-    }
-
-    .form-note {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    /* RIGHT SIDE */
-
-    .right {
+    .form-actions {
       display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .right-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 480px) {
-      .right-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-    }
-
-    .right-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #e5e7eb;
-    }
-
-    @media (max-width: 480px) {
-      .right-title {
-        font-size: 14px;
-      }
-    }
-
-    .right-sub {
-      font-size: 13px;
-      color: #9ca3af;
-    }
-
-    @media (max-width: 480px) {
-      .right-sub {
-        font-size: 12px;
-      }
-    }
-
-    .pill {
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.18);
-      color: #e5e7eb;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-    }
-
-    .tile {
-      padding: 14px 14px 13px;
-      border-radius: 16px;
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      transition: transform 0.3s ease, filter 0.3s ease;
-      cursor: pointer;
-    }
-
-    .tile:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.5));
-    }
-
-    @media (max-width: 480px) {
-      .tile {
-        padding: 12px;
-        border-radius: 12px;
-      }
-    }
-
-    .tile-title {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    @media (max-width: 480px) {
-      .tile-title {
-        font-size: 15px;
-      }
-    }
-
-    .tile-body {
-      font-size: 14px;
-      color: #9ca3af;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 480px) {
-      .tile-body {
-        font-size: 13px;
-      }
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      gap: 12px;
       margin-top: 8px;
     }
 
-    .tag {
+    .form-note {
       font-size: 13px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: #e5e7eb;
+      color: #9ca3af;
+      margin-top: 12px;
     }
 
-    .footer {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #6b7280;
+    .form-status {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .form-status.show {
+      display: block;
+    }
+
+    .form-status.success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #86efac;
+    }
+
+    .form-status.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(5, 7, 18, 0.9);
+      border-top: 1px solid rgba(148, 163, 184, 0.1);
+      padding: 40px 20px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
       justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
-    @media (max-width: 600px) {
-      .footer {
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #f97316;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 50px 20px;
+      }
+
+      .hero {
+        padding: 40px 20px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-section {
+        padding: 40px 24px;
+      }
+
+      .footer-content {
         flex-direction: column;
-        gap: 8px;
         text-align: center;
       }
-    }
 
-    @media (max-width: 480px) {
-      .footer {
-        font-size: 11px;
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
       }
     }
 
-    .footer a {
-      color: #a5f3fc;
-      text-decoration: none;
-      font-size: 11px;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <div class="card">
-      <!-- LEFT -->
-      <div class="left">
-        <div>
-          <div class="badge">
-            <span class="badge-dot"></span>
-            <span>New site in progress</span>
-          </div>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo-text">SLERPTECH</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" onclick="openSupportPortal()">Support Portal</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
 
-          <div class="logo-row">
-            <!-- Use your uploaded logo file here -->
-            <!-- e.g. logo 4.png or logo 1.png renamed to slerptech-logo-full.png -->
-            <img
-              src="assets/logo1.png"
-              alt="SLERPTECH – Your Partner in ERP Excellence"
-              class="logo-image"
-            />
-          </div>
-
-          <h1>
-            We’re crafting the next
-            <span class="accent">ERP &amp; AI experience</span>
-            for your business.
-          </h1>
-
-          <p class="lead">
-            SLERPTECH is building a modern service hub for Adempiere / iDempiere ERP,
-            cloud migration, and AI-powered automation — ensuring your finance and
-            operations run smoother, faster, and more reliably.
-          </p>
-
-          <div class="meta">
-            <div><span class="label">Launch window:</span> Q1–Q2 2026 (beta)</div>
-            <div><span class="label">Focus:</span> ERP support • Implementations • Integrations • AI</div>
-          </div>
-        </div>
-
-        <div class="form">
-          <form action="#" method="post">
-            <div class="form-row">
-              <input
-                type="email"
-                required
-                class="form-input"
-                placeholder="Enter your work email to get launch updates"
-              />
-              <button type="submit" class="btn" disabled>Keep me posted</button>
-            </div>
-          </form>
-          <p class="form-note">
-            No newsletters, no spam – only key launch updates and early-access opportunities.
-          </p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">✨ Modern Enterprise Solutions</div>
+        <h1>Enterprise <span class="accent">ERP, Cloud & AI</span> Solutions</h1>
+        <p class="hero-description">
+          SLERPTECH delivers comprehensive consulting, implementation, and support for ADempiere/iDempiere ERP systems, cloud migration, and AI-powered automation. Transform your business operations with expert guidance and 24/7 support.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Get Started</button>
+          <a href="#" class="btn btn-secondary" onclick="openSupportPortal()">Support Portal</a>
         </div>
       </div>
-
-      <!-- RIGHT -->
-      <div class="right">
-        <div class="right-header">
-          <div>
-            <div class="right-title">What’s coming with SL ERP TECH?</div>
-            <div class="right-sub">
-              A specialist partner for mid-market &amp; enterprise ERP teams.
-            </div>
-          </div>
-          <span class="pill">Made by ERP practitioners</span>
-        </div>
-
-        <div class="grid">
-          <div class="tile">
-            <div class="tile-title">Adempiere / iDempiere Care Plans</div>
-            <div class="tile-body">
-              Proactive monitoring, troubleshooting, and monthly health checks to keep
-              your existing ERP stable, secure, and predictable.
-            </div>
-            <div class="tag-row">
-              <span class="tag">24/7 incident support</span>
-              <span class="tag">Performance tuning</span>
-            </div>
-          </div>
-
-          <div class="tile">
-            <div class="tile-title">Implementation &amp; Roll-outs</div>
-            <div class="tile-body">
-              From requirement workshops to go-live, we help you design, configure, and
-              roll out ERP across finance, logistics, and operations.
-            </div>
-            <div class="tag-row">
-              <span class="tag">Process mapping</span>
-              <span class="tag">Multi-company setups</span>
-            </div>
-          </div>
-
-          <div class="tile">
-            <div class="tile-title">Custom Software Development</div>
-            <div class="tile-body">
-              Tailor-made software solutions built to match your exact business workflows,
-              including web apps, mobile apps, automation tools, and internal systems —
-              designed for speed, scalability, and long-term reliability.
-            </div>
-            <div class="tag-row">
-              <span class="tag">Web & Mobile Apps</span>
-              <span class="tag">Custom Workflows</span>
-            </div>
-          </div>
-
-          <div class="tile">
-            <div class="tile-title">Integration &amp; Cloud Readiness</div>
-            <div class="tile-body">
-              Guidance on cloud hosting, security, and cost-efficient architectures, plus
-              integrations with your wider business systems and data platforms.
-            </div>
-            <div class="tag-row">
-              <span class="tag">Cloud strategy</span>
-              <span class="tag">Scalable architecture</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="footer">
-          <div>© 2025 SLERPTECH (Pvt) Ltd. All rights reserved.</div>
-          <div>
-            <a href="mailto:info@slerptech.com">info@slerptech.com</a> ·
-            <a href="#">LinkedIn</a> ·
-            <a href="#">Contact</a>
-          </div>
+      <div class="hero-right">
+        <div class="hero-visual">
+          🏗️ Enterprise Architecture Platform
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our <span class="accent">Services</span></h2>
+    <p class="section-intro">Comprehensive solutions tailored to your enterprise needs</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🛠️</div>
+        <h3>ADempiere/iDempiere Care Plans</h3>
+        <p>Proactive monitoring, troubleshooting, and monthly health checks. 24/7 incident support and performance tuning to keep your ERP stable and secure.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🚀</div>
+        <h3>Implementation & Roll-outs</h3>
+        <p>From requirement workshops to go-live. Design, configure, and roll out ERP across finance, logistics, and operations with minimal disruption.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Custom Software Development</h3>
+        <p>Tailor-made solutions built to match your exact workflows. Web apps, mobile apps, automation tools, and internal systems designed for speed and scalability.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">☁️</div>
+        <h3>Integration & Cloud Readiness</h3>
+        <p>Guidance on cloud hosting, security, and cost-efficient architectures. Integrations with your business systems and data platforms.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>AI Automation Solutions</h3>
+        <p>Leverage AI to automate business processes, enhance decision-making, and improve operational efficiency. Real-time analytics and intelligent workflows.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>24/7 Enterprise Support</h3>
+        <p>Dedicated support team available round the clock. SLA-backed response times and priority incident handling for mission-critical systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section id="expertise">
+    <h2>Our <span class="accent">Expertise</span></h2>
+    <p class="section-intro">Deep knowledge and proven experience across enterprise technologies</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <h3>ERP Systems</h3>
+        <p>Expert implementation and management of ADempiere and iDempiere platforms. Process optimization, customization, and enterprise-scale deployments.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Cloud Architecture</h3>
+        <p>Design and deployment of scalable cloud solutions. AWS, Azure, and multi-cloud strategies for enhanced reliability and performance.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔐</div>
+        <h3>Security & Compliance</h3>
+        <p>Enterprise-grade security implementations and compliance management. GDPR, SOC 2, and industry-specific regulations.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <h3>Business Analytics</h3>
+        <p>Advanced analytics and reporting solutions. Data warehousing, BI tools, and custom dashboards for actionable insights.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Section -->
+  <section>
+    <h2>Technology <span class="accent">Stack</span></h2>
+    <p class="section-intro">Built with modern, enterprise-proven technologies</p>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Backend</h3>
+        <p>Java, Python, Node.js, AWS Lambda, Docker, Kubernetes for scalable and reliable enterprise backends.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>Frontend</h3>
+        <p>React, Vue.js, TypeScript, responsive design frameworks for modern, accessible user experiences.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>Databases</h3>
+        <p>PostgreSQL, MySQL, MongoDB, DynamoDB for robust data management and high-performance queries.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>DevOps & Cloud</h3>
+        <p>AWS, Docker, Kubernetes, CI/CD pipelines, Infrastructure as Code for seamless deployments and operations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="contact-section">
+      <h2>Get in <span class="accent">Touch</span></h2>
+      <p class="section-intro">We're ready to help you transform your enterprise operations</p>
+      
+      <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+        <input 
+          type="email" 
+          class="form-input" 
+          id="email" 
+          placeholder="your.email@company.com" 
+          required
+        />
+        <input 
+          type="text" 
+          class="form-input" 
+          id="name" 
+          placeholder="Your Name (optional)"
+        />
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" style="flex: 1;">Send Message</button>
+        </div>
+        <div class="form-status" id="formStatus"></div>
+        <p class="form-note">We'll get back to you within 24 hours</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div>© 2025 SLERPTECH (Pvt) Ltd. All rights reserved.</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@slerptech.com">info@slerptech.com</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when link is clicked
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Contact form submission
+    async function submitForm(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const name = document.getElementById('name').value;
+      const formStatus = document.getElementById('formStatus');
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+
+      // Get API endpoint from environment or use default
+      const apiUrl = window.VITE_CONTACT_API_URL || 'https://your-api-endpoint.com/api/contact';
+
+      try {
+        submitBtn.disabled = true;
+        formStatus.textContent = 'Sending...';
+        formStatus.classList.add('show');
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, name }),
+        });
+
+        if (response.ok) {
+          formStatus.textContent = '✓ Thank you! We\'ll be in touch within 24 hours.';
+          formStatus.classList.remove('error');
+          formStatus.classList.add('success', 'show');
+          event.target.reset();
+        } else {
+          throw new Error('Failed to send message');
+        }
+      } catch (error) {
+        formStatus.textContent = '✗ Error sending message. Please try again.';
+        formStatus.classList.remove('success');
+        formStatus.classList.add('error', 'show');
+        submitBtn.disabled = false;
+      }
+    }
+
+    // Support portal redirect
+    function openSupportPortal() {
+      const supportUrl = window.VITE_SUPPORT_PORTAL_URL || '#';
+      if (supportUrl !== '#') {
+        window.open(supportUrl, '_blank');
+      } else {
+        alert('Support portal URL not configured');
+      }
+    }
+
+    // Set current year in footer
+    const year = new Date().getFullYear();
+    document.querySelector('footer').innerHTML = document.querySelector('footer').innerHTML.replace('2025', year);
+  </script>
 </body>
 </html>
-
