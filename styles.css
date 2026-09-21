@@ -35,7 +35,8 @@ nav a:hover { color: var(--red); }
 .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; padding-block: 80px; align-items: center; }
 .eyebrow { font-size: .8125rem; font-weight: 650; letter-spacing: .12em; line-height: 1.6; }
 .hero .eyebrow { color: var(--orange); margin-bottom: 26px; }
-h1 span { color: var(--orange); }
+.hero-promise { margin-top: 22px; font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.2; letter-spacing: -.025em; font-weight: 600; color: #fff; }
+.hero-promise span { color: var(--orange); }
 .hero-description { margin-top: 28px; color: #c3cedd; font-size: 1.125rem; max-width: 570px; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; margin-top: 32px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 13px 22px; border-radius: 4px; font-weight: 600; font-size: .9375rem; transition: background .2s, transform .2s; }
