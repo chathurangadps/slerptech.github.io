@@ -76,11 +76,28 @@ h1 span { color: var(--orange); }
 .capability p { color: var(--muted); margin-top: 18px; padding-bottom: 28px; }
 .capability-caption { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); font-size: .875rem; font-weight: 550; }
 .platform-source { margin-top: 28px; }
+.modernization-callout { display: grid; grid-template-columns: 1.25fr .85fr; gap: 64px; padding: 42px; margin-bottom: 42px; background: var(--navy); color: #fff; border-top: 3px solid var(--orange); }
+.modernization-callout .eyebrow { color: var(--orange); margin-bottom: 16px; }
+.modernization-callout h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.modernization-callout p { color: #c3cedd; margin-top: 18px; max-width: 700px; }
+.modernization-callout .modernization-lead { color: #fff; font-size: 1.15rem; font-weight: 600; }
+.modernization-callout .button { margin-top: 26px; }
+.modernization-list { align-self: center; list-style: none; padding: 0; margin: 0; border-top: 1px solid #3b4961; }
+.modernization-list li { position: relative; padding: 11px 0 11px 22px; border-bottom: 1px solid #3b4961; color: #d7dfeb; font-size: .9375rem; }
+.modernization-list li::before { content: ""; position: absolute; left: 0; top: 1.2rem; width: 7px; height: 7px; background: var(--orange); }
 .service-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .service { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 36px; }
+.service-featured { box-shadow: inset 0 3px 0 var(--orange); }
+.service-wide { grid-column: 1 / -1; }
 .service-index { display: block; color: var(--muted); font-size: .8125rem; font-weight: 650; letter-spacing: .08em; margin-bottom: 25px; }
 .service h3 { font-size: 1.9rem; }
 .service p { color: var(--muted); margin-top: 20px; }
+.service-list { padding: 0; margin: 24px 0 0; list-style: none; }
+.service-list li { position: relative; padding: 8px 0 8px 18px; border-top: 1px solid #edf0f4; color: #43516a; font-size: .9375rem; line-height: 1.45; }
+.service-list li::before { content: ""; position: absolute; left: 0; top: 1rem; width: 6px; height: 6px; background: var(--orange); }
+.service-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 28px; }
+.service-groups h4 { margin: 0; font-size: 1rem; letter-spacing: .02em; color: var(--red); text-transform: uppercase; }
+.service-groups .service-list { margin-top: 12px; }
 .tags { padding: 0; margin: 24px 0 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .tags li { background: #f1f4f8; padding: 5px 10px; border-radius: 3px; font-size: .875rem; color: #43516a; }
 .approach-section { background: #f2f5f9; padding-block: 72px; }
@@ -142,6 +159,8 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; }
   .section-space { padding-block: 60px; }
   .service { padding: 28px; }
   .service h3 { font-size: 1.65rem; }
+  .modernization-callout { grid-template-columns: 1fr; gap: 32px; padding: 32px; }
+  .service-groups { grid-template-columns: 1fr; gap: 24px; }
   .approach-grid, .ai-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
   .approach-intro { max-width: 600px; }
   .ai-section, .approach-section { padding-block: 54px; }
@@ -163,6 +182,8 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; }
   .platform-row strong { font-size: .9375rem; }
   .platform-row small { font-size: .875rem; }
   .service-grid { grid-template-columns: 1fr; }
+  .service-wide { grid-column: auto; }
+  .modernization-callout { padding: 26px 22px; margin-inline: -2px; }
   .capability { display: flex; padding: 24px; }
   .module-label { margin-bottom: 22px; }
   .contact-details { padding-left: 20px; }
