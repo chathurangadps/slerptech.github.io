@@ -77,6 +77,24 @@ nav a:hover { color: var(--red); }
 .capability p { color: var(--muted); margin-top: 18px; padding-bottom: 28px; }
 .capability-caption { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); font-size: .875rem; font-weight: 550; }
 .platform-source { margin-top: 28px; }
+.open-source-section { background: #fff; }
+.open-source-heading { align-items: start; }
+.open-source-intro h3 { font-size: 1.45rem; margin-bottom: 14px; }
+.open-source-intro p { color: var(--muted); font-size: 1.0625rem; }
+.open-source-intro p + p { margin-top: 14px; }
+.open-source-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.open-source-card { min-width: 0; padding: 30px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; }
+.open-source-number { color: var(--red); font-size: .8125rem; font-weight: 650; letter-spacing: .08em; margin-bottom: 22px; }
+.open-source-card h3 { font-size: 1.5rem; }
+.open-source-card p { color: var(--muted); margin-top: 16px; }
+.open-source-card strong { display: block; margin-top: auto; padding-top: 22px; font-size: .9375rem; line-height: 1.5; color: var(--ink); font-weight: 600; }
+.open-source-value { display: grid; grid-template-columns: 1fr 1.35fr; gap: 70px; margin-top: 42px; padding: 36px; background: var(--navy); color: #fff; border-top: 3px solid var(--orange); }
+.open-source-value .eyebrow { color: var(--orange); margin-bottom: 14px; }
+.open-source-value h3 { font-size: clamp(1.75rem, 2.8vw, 2.4rem); }
+.open-source-value p { color: #c3cedd; }
+.open-source-value p + p { margin-top: 14px; }
+.open-source-value .button { margin-top: 24px; }
+.open-source-note { margin-top: 18px; color: var(--muted); font-size: .8125rem; }
 .modernization-callout { display: grid; grid-template-columns: 1.25fr .85fr; gap: 64px; padding: 42px; margin-bottom: 42px; background: var(--navy); color: #fff; border-top: 3px solid var(--orange); }
 .modernization-callout .eyebrow { color: var(--orange); margin-bottom: 16px; }
 .modernization-callout h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
@@ -153,6 +171,8 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; }
   .section-heading { grid-template-columns: 1fr; gap: 22px; }
   .section-heading > p { max-width: 650px; }
   .benefit-grid, .capability-grid { grid-template-columns: 1fr; gap: 24px; }
+  .open-source-grid { grid-template-columns: repeat(2, 1fr); }
+  .open-source-value { grid-template-columns: 1fr; gap: 26px; padding: 32px; }
   .capability { display: grid; grid-template-columns: 95px 1fr; column-gap: 24px; }
   .module-label { grid-row: 1 / 4; margin: 0; }
   .capability p { padding-bottom: 20px; }
@@ -183,6 +203,9 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; }
   .platform-row strong { font-size: .9375rem; }
   .platform-row small { font-size: .875rem; }
   .service-grid { grid-template-columns: 1fr; }
+  .open-source-grid { grid-template-columns: 1fr; }
+  .open-source-card { padding: 24px; }
+  .open-source-value { padding: 26px 22px; }
   .service-wide { grid-column: auto; }
   .modernization-callout { padding: 26px 22px; margin-inline: -2px; }
   .capability { display: flex; padding: 24px; }
