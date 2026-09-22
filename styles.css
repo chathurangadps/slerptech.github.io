@@ -90,6 +90,7 @@ nav a:hover { color: var(--red); }
 .service { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 36px; }
 .service-featured { box-shadow: inset 0 3px 0 var(--orange); }
 .service-wide { grid-column: 1 / -1; }
+.service-support { grid-column: 2; grid-row: 3; }
 .service-index { display: block; color: var(--muted); font-size: .8125rem; font-weight: 650; letter-spacing: .08em; margin-bottom: 25px; }
 .service h3 { font-size: 1.9rem; }
 .service p { color: var(--muted); margin-top: 20px; }
@@ -184,6 +185,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; }
   .platform-row small { font-size: .875rem; }
   .service-grid { grid-template-columns: 1fr; }
   .service-wide { grid-column: auto; }
+  .service-support { grid-column: auto; grid-row: auto; }
   .modernization-callout { padding: 26px 22px; margin-inline: -2px; }
   .capability { display: flex; padding: 24px; }
   .module-label { margin-bottom: 22px; }
