@@ -257,3 +257,28 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; }
 @media (forced-colors: active) {
   .scroll-button { border: 1px solid ButtonText; }
 }
+
+/* One shared navigation: disclosure on mobile/tablet, inline on desktop. */
+.menu-toggle { display: none; }
+.menu-icon-close { display: none; }
+.menu-toggle[aria-expanded="true"] .menu-icon-open { display: none; }
+.menu-toggle[aria-expanded="true"] .menu-icon-close { display: block; }
+.menu-toggle:focus-visible { outline: 3px solid #c57516; outline-offset: 3px; }
+@media (max-width: 1024px) {
+  .header-inner { min-height: 76px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 16px; padding-block: 10px; }
+  .site-header .brand { width: 190px; max-width: 100%; height: 56px; }
+  .menu-toggle:not([hidden]) { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 10px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: var(--ink); cursor: pointer; }
+  .menu-toggle:hover { background: #f2f5f9; }
+  #main-navigation { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: stretch; gap: 4px; width: 100%; min-width: 0; padding-block: 12px 6px; margin-top: 10px; border-top: 1px solid var(--line); font-size: 1rem; }
+  .navigation-ready #main-navigation { display: none; }
+  .navigation-ready .menu-toggle[aria-expanded="true"] + #main-navigation { display: flex; }
+  #main-navigation a { display: flex; align-items: center; min-height: 48px; padding: 10px 12px; border-radius: 4px; overflow-wrap: anywhere; }
+  #main-navigation a:hover { background: #f2f5f9; }
+  #main-navigation a:focus-visible { outline-offset: 2px; }
+  #main-navigation .nav-contact { justify-content: space-between; margin-top: 8px; padding-inline: 16px; background: var(--orange); color: var(--navy); border-color: var(--orange); font-weight: 600; }
+  #main-navigation .nav-contact:hover { background: #ffbc60; }
+}
+@media (max-width: 767px) {
+  .site-header .header-inner { width: calc(100% - 36px); min-height: 64px; padding-block: 8px; }
+  .site-header .brand { width: 164px; height: 48px; }
+}
