@@ -3,8 +3,8 @@
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   // The migration flow has its own entrance so it does not animate twice.
-  const sections = document.querySelectorAll('main > section:not(.hero):not(#migration):not(.capabilities)');
-  const capabilities = Array.from(document.querySelectorAll('.capability'));
+  const sections = document.querySelectorAll('main > section:not(.hero):not(#migration):not(.capabilities):not(.agentic-section)');
+  const capabilities = Array.from(document.querySelectorAll('.capability, .agent-card'));
   const flow = document.querySelector('.migration-path');
   const flowAnimations = new Set();
   reducedMotion.addEventListener('change', () => {
@@ -30,7 +30,7 @@
           ],
           {
             duration: 650,
-            delay: window.matchMedia('(min-width: 901px)').matches ? index * 130 : 0,
+            delay: window.matchMedia('(min-width: 901px)').matches ? (index % 3) * 130 : 0,
             easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
             fill: 'backwards',
           },
@@ -81,4 +81,5 @@
   capabilities.forEach((card) => observer.observe(card));
   const capabilityHeading = document.querySelector('.capabilities .section-heading');
   if (capabilityHeading) observer.observe(capabilityHeading);
+  document.querySelectorAll('.agentic-section .section-heading, .agent-journey, .agent-integration, .agent-platforms, .agent-cta').forEach((item) => observer.observe(item));
 })();
