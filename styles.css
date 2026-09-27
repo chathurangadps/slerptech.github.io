@@ -402,3 +402,35 @@ html { scroll-padding-top: 20px; }
 @media (min-width: 1281px) {
   #main-navigation .nav-ai { max-width: 135px; line-height: 1.4; }
 }
+
+/* A useful, branded footer with clear routes back into the business. */
+.site-footer { background: var(--navy); color: #c3cedd; border-top: 3px solid var(--orange); padding-top: 48px; }
+.footer-grid { display: grid; grid-template-columns: 1.35fr 1.1fr .85fr 1.1fr; gap: 36px; padding-bottom: 36px; }
+.footer-grid > * { min-width: 0; }
+.footer-wordmark { display: inline-block; color: #fff; font-size: 1.8rem; line-height: 1.2; font-weight: 700; letter-spacing: -.035em; }
+.footer-wordmark span { color: var(--orange); }
+.footer-tagline { color: #fff; font-weight: 550; margin-top: 12px; }
+.footer-company > p:not(.footer-tagline) { margin-top: 16px; }
+.footer-grid p { font-size: .9375rem; line-height: 1.65; }
+.footer-company-name { color: #aebdd2; font-size: .875rem !important; }
+.footer-grid h2 { color: #fff; font-size: 1rem; line-height: 1.4; letter-spacing: 0; font-weight: 650; margin-bottom: 16px; }
+.footer-nav { display: block; font-size: .9375rem; font-weight: 400; }
+.footer-nav ul { padding: 0; margin: 0; list-style: none; }
+.footer-nav a { display: block; padding: 6px 0; color: #c3cedd; line-height: 1.5; }
+.footer-email { display: block; color: #fff; margin-top: 20px; padding-block: 6px; overflow-wrap: anywhere; font-weight: 550; }
+.footer-contact .text-link { color: var(--orange); margin-top: 16px; padding-block: 8px; }
+.site-footer a:hover { color: var(--orange); text-decoration: underline; text-underline-offset: 5px; }
+.site-footer a:focus-visible { outline-color: var(--orange); outline-offset: 4px; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid #3b4961; padding-top: 24px; font-size: .875rem; }
+.footer-bottom a { padding: 8px 0; white-space: nowrap; color: #fff; }
+.footer-disclaimer { color: #aebdd2; font-size: .875rem; margin-top: 12px; padding-right: 52px; }
+@media (max-width: 1100px) {
+ .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px; }
+ .footer-company { max-width: 430px; }
+}
+@media (max-width: 600px) {
+ .site-footer { padding-top: 36px; }
+ .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-bottom: 28px; }
+ .footer-nav a { min-height: 44px; display: flex; align-items: center; }
+ .footer-bottom { align-items: flex-start; flex-direction: column; gap: 8px; padding-right: 52px; }
+}
