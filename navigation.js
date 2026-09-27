@@ -2,7 +2,7 @@
   const header = document.querySelector('.site-header');
   const toggle = header.querySelector('.menu-toggle');
   const navigation = document.getElementById('main-navigation');
-  const compact = window.matchMedia('(max-width: 1024px)');
+  const compact = window.matchMedia('(max-width: 1280px)');
 
   function setOpen(open, restoreFocus = false) {
     toggle.setAttribute('aria-expanded', String(open));
