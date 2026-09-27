@@ -38,10 +38,10 @@ nav a:hover { color: var(--red); }
 h1 span { color: var(--orange); }
 .hero-description { margin-top: 28px; color: #c3cedd; font-size: 1.125rem; max-width: 570px; }
 .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; margin-top: 32px; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 13px 22px; border-radius: 4px; font-weight: 600; font-size: .9375rem; transition: background .2s, transform .2s; }
-.button:hover { transform: translateY(-2px); }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 13px 22px; border-radius: 4px; font-weight: 600; font-size: .9375rem; transition: background .18s ease, transform .18s ease, filter .18s ease; }
+.button:focus-visible { outline: 3px solid #c57516; outline-offset: 3px; box-shadow: 0 0 0 6px #fff; }
+.button:active { transform: translateY(1px); filter: brightness(.96); }
 .button-primary { background: var(--orange); color: var(--navy); }
-.button-primary:hover { background: #ffbc60; }
 .text-link { display: inline-flex; align-items: center; gap: 15px; font-size: .9375rem; font-weight: 550; text-underline-offset: 6px; }
 .text-link:hover { text-decoration: underline; }
 .specialism { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 38px; font-size: .875rem; color: #aebdd2; }
@@ -125,7 +125,11 @@ h1 span { color: var(--orange); }
 .email-link:hover { color: var(--red); }
 .contact-details p { font-size: .9375rem; }
 .button-dark { background: var(--navy); color: #fff; margin-top: 26px; }
-.button-dark:hover { background: #2d4160; }
+@media (hover: hover) and (pointer: fine) {
+  .button:hover { transform: translateY(-2px); }
+  .button-primary:hover { background: #ffbc60; }
+  .button-dark:hover { background: #2d4160; }
+}
 footer { border-top: 1px solid var(--line); padding-block: 28px; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; color: var(--muted); font-size: .875rem; }
 .footer-inner a:hover { text-decoration: underline; }
@@ -186,6 +190,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
+  .button:hover, .button:active, .service:hover, .benefit:hover { transform: none !important; }
 }
 @media (forced-colors: active) { .button, .tags li { border: 1px solid ButtonText; } }
 
@@ -264,6 +269,12 @@ html { scroll-padding-top: 20px; }
 .section-space { padding-block: 72px; }
 .service-grid { border: 0; gap: 18px; }
 .service { border: 1px solid var(--line); padding: 27px; min-width: 0; }
+.benefit, .service { transition: transform .2s ease, box-shadow .2s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .benefit:hover, .service:hover { transform: translateY(-3px); box-shadow: 0 9px 20px rgb(16 27 48 / 10%); }
+  .service:hover { box-shadow: inset 0 3px 0 var(--orange), 0 9px 20px rgb(16 27 48 / 10%); }
+}
+.service:focus-within { box-shadow: inset 0 3px 0 var(--orange), 0 0 0 2px rgb(197 117 22 / 40%); }
 .service h3 { font-size: 1.5rem; }
 .service p { margin-top: 12px; }
 .service-keywords { font-size: .875rem; font-weight: 600; color: var(--red) !important; line-height: 1.6; }
