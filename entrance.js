@@ -3,7 +3,8 @@
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   // The migration flow has its own entrance so it does not animate twice.
-  const sections = document.querySelectorAll('main > section:not(.hero):not(#migration)');
+  const sections = document.querySelectorAll('main > section:not(.hero):not(#migration):not(.capabilities)');
+  const capabilities = Array.from(document.querySelectorAll('.capability'));
   const flow = document.querySelector('.migration-path');
   const flowAnimations = new Set();
   reducedMotion.addEventListener('change', () => {
@@ -18,6 +19,29 @@
       entered.add(entry.target);
       observer.unobserve(entry.target);
       if (reducedMotion.matches) return;
+
+      if (capabilities.includes(entry.target)) {
+        // Observe each card so stacked mobile cards enter when actually visible.
+        const index = capabilities.indexOf(entry.target);
+        const animation = entry.target.animate(
+          [
+            { opacity: 0, transform: 'translateY(28px)' },
+            { opacity: 1, transform: 'translateY(0)' },
+          ],
+          {
+            duration: 650,
+            delay: window.matchMedia('(min-width: 901px)').matches ? index * 130 : 0,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            fill: 'backwards',
+          },
+        );
+        flowAnimations.add(animation);
+        animation.finished.then(
+          () => flowAnimations.delete(animation),
+          () => flowAnimations.delete(animation),
+        );
+        return;
+      }
 
       if (entry.target === flow) {
         Array.from(flow.children).forEach((step, index) => {
@@ -54,4 +78,7 @@
 
   sections.forEach((section) => observer.observe(section));
   if (flow) observer.observe(flow);
+  capabilities.forEach((card) => observer.observe(card));
+  const capabilityHeading = document.querySelector('.capabilities .section-heading');
+  if (capabilityHeading) observer.observe(capabilityHeading);
 })();
