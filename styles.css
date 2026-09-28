@@ -434,3 +434,13 @@ html { scroll-padding-top: 20px; }
  .footer-nav a { min-height: 44px; display: flex; align-items: center; }
  .footer-bottom { align-items: flex-start; flex-direction: column; gap: 8px; padding-right: 52px; }
 }
+
+/* Journey step hover follows the existing card interaction style. */
+.agent-journey-steps li { transition: transform .22s ease, background-color .22s ease, border-color .22s ease, box-shadow .22s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .agent-journey-steps li:hover { transform: translateY(-4px); background: #25344d; border-color: var(--orange); box-shadow: 0 8px 18px rgb(0 0 0 / 18%), inset 0 2px 0 var(--orange); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .agent-journey-steps li { transition: none; }
+  .agent-journey-steps li:hover { transform: none; }
+}
