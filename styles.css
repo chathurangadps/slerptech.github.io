@@ -444,3 +444,13 @@ html { scroll-padding-top: 20px; }
   .agent-journey-steps li { transition: none; }
   .agent-journey-steps li:hover { transform: none; }
 }
+
+/* Matching interaction for the light architecture steps. */
+.agent-architecture-flow li { transition: transform .22s ease, background-color .22s ease, border-color .22s ease, box-shadow .22s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .agent-architecture-flow li:hover { transform: translateY(-4px); background: #fff8ed; border-color: var(--orange); box-shadow: 0 8px 18px rgb(16 27 48 / 10%), inset 0 2px 0 var(--orange); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .agent-architecture-flow li { transition: none; }
+  .agent-architecture-flow li:hover { transform: none; }
+}
