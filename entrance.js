@@ -2,85 +2,68 @@
   if (!('IntersectionObserver' in window) || !Element.prototype.animate) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  // The migration flow has its own entrance so it does not animate twice.
-  const sections = document.querySelectorAll('.hero-copy, .platform-panel, .section-heading, .modernization-copy, .approach-intro, .ai-grid > div, .trust-grid > *, .contact-grid > *, .footer-grid > *, .footer-bottom');
-  const capabilities = Array.from(document.querySelectorAll('.capability, .service, .benefit, .steps > li, .agent-journey-steps > li'));
-  const flow = document.querySelector('.migration-path');
-  const flowAnimations = new Set();
-  reducedMotion.addEventListener('change', () => {
-    if (!reducedMotion.matches) return;
-    flowAnimations.forEach((animation) => animation.cancel());
-    flowAnimations.clear();
+  // Leave content visible without setting up observers for reduced-motion users.
+  if (reducedMotion.matches) return;
+
+  const desktop = window.matchMedia('(min-width: 901px)');
+  const cards = document.querySelectorAll('.capability, .service, .benefit, .steps > li, .agent-journey-steps > li');
+  const cardIndexes = new WeakMap();
+  const groupCounts = new WeakMap();
+  // Compute each card's stagger once, outside the intersection callback.
+  cards.forEach((card) => {
+    const parent = card.parentElement;
+    const index = groupCounts.get(parent) || 0;
+    cardIndexes.set(card, index);
+    groupCounts.set(parent, index + 1);
   });
+
+  const flow = document.querySelector('.migration-path');
+  const flowSteps = flow ? Array.from(flow.children) : [];
+  const activeAnimations = new Set();
   const entered = new WeakSet();
+  const easing = 'cubic-bezier(0.22, 1, 0.36, 1)';
+  const entrance = [
+    { opacity: 0, transform: 'translateY(28px)' },
+    { opacity: 1, transform: 'translateY(0)' },
+  ];
+
+  function animate(element, keyframes, duration, delay = 0) {
+    const animation = element.animate(keyframes, { duration, delay, easing, fill: 'backwards' });
+    activeAnimations.add(animation);
+    const cleanup = () => activeAnimations.delete(animation);
+    animation.finished.then(cleanup, cleanup);
+  }
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting || entered.has(entry.target)) return;
-      entered.add(entry.target);
-      observer.unobserve(entry.target);
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting || entered.has(target)) return;
+      entered.add(target);
+      observer.unobserve(target);
       if (reducedMotion.matches) return;
 
-      if (capabilities.includes(entry.target)) {
-        // Observe each card so stacked mobile cards enter when actually visible.
-        const siblings = Array.from(entry.target.parentElement.children).filter((item) => capabilities.includes(item));
-        const index = siblings.indexOf(entry.target);
-        const animation = entry.target.animate(
-          [
-            { opacity: 0, transform: 'translateY(28px)' },
-            { opacity: 1, transform: 'translateY(0)' },
-          ],
-          {
-            duration: 650,
-            delay: window.matchMedia('(min-width: 901px)').matches ? (index % 3) * 130 : 0,
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fill: 'backwards',
-          },
-        );
-        flowAnimations.add(animation);
-        animation.finished.then(
-          () => flowAnimations.delete(animation),
-          () => flowAnimations.delete(animation),
-        );
-        return;
-      }
-
-      if (entry.target === flow) {
-        Array.from(flow.children).forEach((step, index) => {
-          const animation = step.animate(
-            [
-              { opacity: 0.35, transform: 'translateY(8px)' },
-              { opacity: 1, transform: 'translateY(0)' },
-            ],
-            {
-              duration: 320,
-              delay: index * 70,
-              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-              fill: 'backwards',
-            },
-          );
-          flowAnimations.add(animation);
-          animation.finished.then(
-            () => flowAnimations.delete(animation),
-            () => flowAnimations.delete(animation),
-          );
-        });
-        return;
-      }
-
-      const animation = entry.target.animate(
-        [
-          { opacity: 0, transform: 'translateY(28px)' },
+      if (target === flow) {
+        flowSteps.forEach((step, index) => animate(step, [
+          { opacity: 0.35, transform: 'translateY(8px)' },
           { opacity: 1, transform: 'translateY(0)' },
-        ],
-        { duration: 650, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' },
-      );
-      flowAnimations.add(animation);
-      animation.finished.then(() => flowAnimations.delete(animation), () => flowAnimations.delete(animation));
+        ], 320, index * 70));
+        return;
+      }
+
+      const index = cardIndexes.get(target);
+      const delay = index !== undefined && desktop.matches ? (index % 3) * 130 : 0;
+      animate(target, entrance, 650, delay);
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
 
-  sections.forEach((section) => observer.observe(section));
+  reducedMotion.addEventListener('change', () => {
+    if (!reducedMotion.matches) return;
+    observer.disconnect();
+    activeAnimations.forEach((animation) => animation.cancel());
+    activeAnimations.clear();
+  });
+
+  // Hero text and platform panel render immediately; animate later sections once.
+  document.querySelectorAll('.section-heading, .modernization-copy, .approach-intro, .ai-grid > div, .trust-grid > *, .contact-grid > *, .footer-grid > *, .footer-bottom, .agent-journey > p, .agent-journey > h3, .agent-integration, .agent-platforms, .agent-cta').forEach((item) => observer.observe(item));
+  cards.forEach((card) => observer.observe(card));
   if (flow) observer.observe(flow);
-  capabilities.forEach((card) => observer.observe(card));
-  document.querySelectorAll('.agent-journey > p, .agent-journey > h3, .agent-integration, .agent-platforms, .agent-cta').forEach((item) => observer.observe(item));
 })();
