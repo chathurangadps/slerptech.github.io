@@ -524,3 +524,6 @@ html { scroll-padding-top: 120px; }
 /* Footer and floating control alignment */
 body{background:var(--navy)}
 .scroll-button{left:auto!important;right:max(16px,env(safe-area-inset-right))!important;background:var(--navy)!important;color:#fff!important}
+
+/* Keep content sections neutral; footer owns its dark background. */
+body{background:#fff!important}
