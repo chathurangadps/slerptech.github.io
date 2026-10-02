@@ -3,6 +3,14 @@
   const toggle = header.querySelector('.menu-toggle');
   const navigation = document.getElementById('main-navigation');
   const compact = window.matchMedia('(max-width: 1280px)');
+  const backToTop = document.querySelector('.scroll-button');
+  const updateBackToTop = () => {
+    if (!backToTop) return;
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    backToTop.classList.toggle('is-visible', scrollPosition > 180);
+  };
+  updateBackToTop();
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
 
   function setOpen(open, restoreFocus = false) {
     toggle.setAttribute('aria-expanded', String(open));
